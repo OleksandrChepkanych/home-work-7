@@ -57,9 +57,11 @@ def normalize(catalog):
 
 def not_nul():
     # Перевірка на ввід параметра шляху до папки(існування значення)
-    if len(sys.argv) > 1:
-        catalog = sys.argv[1]
-        return catalog
-    
+    try:
+        normalize(sys.argv[1])
+    except (IndexError, FileNotFoundError):
+        print("Input path")
+        pass
+
 if __name__ == '__main__':
-    normalize(not_nul()) if not_nul() else print('Шлях не введено')
+    not_nul()
